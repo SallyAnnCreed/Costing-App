@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './login';
+import Register from './register';
+import MainPage from './MainPage'; 
+import LabellingPage from './LabellingPage';
+import RawMaterialsPage from './RawMaterialsPage';
+import PackagingPage from './PackagingPage';
+import ArchivePage from './ArchivePage'; // ✅ Correctly imported
+import Navbar from './Navbar';
+import 'font-awesome/css/font-awesome.min.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/main" element={<><Navbar /><MainPage /></>} />
+        <Route path="/labelling" element={<><Navbar /><LabellingPage /></>} />
+        <Route path="/packaging" element={<><Navbar /><PackagingPage /></>} />
+        <Route path="/raw-materials" element={<><Navbar /><RawMaterialsPage /></>} />
+        <Route path="/archive" element={<><Navbar /><ArchivePage /></>} /> {/* ✅ Corrected */}
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
